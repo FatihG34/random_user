@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import email from "../assets/email.svg"
+import location from "../assets/location.svg"
+import phone from "../assets/phone.svg"
 
 const Users = () => {
     const [users, setUsers] = useState([]);
@@ -9,23 +12,43 @@ const Users = () => {
         axios(`https://randomuser.me/api/`)
             .then((res) =>
                 res.data.results.map((user) => ({
-                    name: `${user.name.first} ${user.name.last}`,
+                    name: `${user.name.title} ${user.name.first} ${user.name.last}`,
                     username: `${user.login.username}`,
                     email: `${user.email}`,
-                    image: `${user.picture.thumbnail}`
+                    image: `${user.picture.medium}`,
+                    age: `${user.dob.age}`,
+                    tel: `${user.cell}`,
+                    register: `${user.registered.date}`,
+                    location: `${user.location.state} - ${user.location.country}`
                 })))
             .then((data) => {
                 setUsers(data)
             })
+            .catch((err) => console.log(err))
     }, [count])
     return (
-        <div>
+        <div className='container' >
             {users.map((person) => (
-                <div key={person.username}>
-                    <img src={person.image} alt="" />
-                    <div>
-                        <h1>{person.name}</h1>
-                        <p>{person.email}</p>
+                <div className='person-allInfo' key={person.username}>
+                    <div className='img-name'>
+                        <img className='person-img' src={person.image} alt="" />
+                        <h3>{person.name}</h3>
+                    </div>
+                    <div className='person-info'>
+                        <div className='collobrates img'>
+                            <img className='email' src={email} alt="email" />
+                            <img className='phone' src={phone} alt="" />
+                            <img className='location' src={location} alt="location" />
+                        </div>
+                        <div className='collobrates infos'>
+                            <p>{person.email}</p>
+                            <p> {person.tel}</p>
+                            <p>{person.location}</p>
+                        </div>
+                    </div>
+                    <div className='bottom-info'>
+                        <p>Age: {person.age}</p>
+                        <p>Register Date: {person.register}</p>
                     </div>
                 </div>
             ))}

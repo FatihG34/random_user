@@ -4,7 +4,7 @@ import Users from './components/Users';
 
 function App() {
   return (
-    <div className="App">
+    <div className="main-container">
       <Users />
     </div>
   );
