@@ -48,7 +48,7 @@ const Users = () => {
                     </div>
                     <div className='bottom-info'>
                         <p>Age: {person.age}</p>
-                        <p>Register Date: {person.register}</p>
+                        <p>Register Date: {(person.register).slice(0, 10)}</p>
                     </div>
                 </div>
             ))}
