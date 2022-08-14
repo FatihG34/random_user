@@ -11,7 +11,7 @@ Project aims completed and created a Random User App.
 
 ## Outcome
 
-![Project 004 Snapshot](random-user-app.gif)
+![Random User App](random-user-app.gif)
 
 
 
